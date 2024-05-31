@@ -2,7 +2,7 @@
 This repository provide some useful information about the usage of yq tool
 
 ## Update a field value selectively
-Following yml file contains a dictionary of users and need to update status for the user name2. In order to select the values, dictionary need to be converted to a list using `to_entries`.
+Following yml file contains a dictionary of users and need to update status for the user name2. In order to select the values, dictionary need to be converted to a list using `to_entries`. Option `-i` used to update the file in-place.
 
 ```yaml
 # file.yml
