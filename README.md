@@ -16,3 +16,9 @@ users:
 ```sh
 yq -i '(.users | to_entries | .[] | select(.key == "name2").value.status) = "active"' file.yml
 ```
+
+## Examples in GitHub actions
+
+| Workflow                                     | Description                                                                               |
+|----------------------------------------------|-------------------------------------------------------------------------------------------|
+| [example01](.github/workflows/example01.yml) | Extract fileds from complex data structure. Data structure contains key names with dashes |

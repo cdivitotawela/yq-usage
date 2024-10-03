@@ -1,0 +1,39 @@
+# This is sample file of Jenkins job builder
+# File contains tokenised strings and keys with dashes
+- project:
+    name: PRJ01
+    jobs:
+      - "{name}"
+
+- job-template:
+    name: "{name}"
+    display-name: "PRJ01"
+    project-type: folder
+
+- project:
+    name: create
+    type:
+      - Default:
+          network: holskey
+          secure: false
+      - Secure:
+          network: mainnet
+          secure: true
+    jobs:
+      - "{name}-{type}":
+          stepType: "create"
+
+- job-template:
+    name: "{name}-{type}"
+    display-name: "Create {type}"
+    folder: PRJ01
+    parameters:
+      - hidden:
+          name: stepType
+          default: create
+      - string:
+          name: VERSION
+          default: "1.0.0"
+          description: "Version of the application"
+          trim: true
+

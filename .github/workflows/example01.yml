@@ -1,0 +1,24 @@
+name: Example 01
+
+on:
+  workflow_dispatch:
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup yq
+        env:
+          VERSION: 'v4.44.3'
+          BINARY: 'yq_linux_amd64'
+        run: |
+          wget -q https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq
+          chmod +x /usr/bin/yq
+          yq --version
+        
+      - name: Extract
+        run: |
+          yq '.[].["job-template"] | select( .name == "{name}-{type}" ).parameters[].string | select ( .name == "VERSION").default' data01.yml
